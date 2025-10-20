@@ -44,12 +44,31 @@ pipeline {
                 }
             }
             steps {
-                echo "🏗️ Iniciando construcción Maven en la rama ${env.BRANCH_NAME}..."
-                dir('icbs-interface') {  // 👈 Aquí entramos a la carpeta del pom.xml
-                    sh '''
-                        echo "🧩 Ejecutando build con settings.xml personalizado"
-                        mvn -s $MAVEN_SETTINGS clean package install deploy -U -DskipTests -DretryFailedDeploymentCount=5
-                    '''
+                script {
+                    echo "🏗️ Iniciando construcción Maven en la rama ${env.BRANCH_NAME ?: env.CHANGE_TARGET}..."
+
+                    dir('icbs-interface-core') {
+                        def target = env.BRANCH_NAME ?: env.CHANGE_TARGET ?: ''
+
+                        if (target == 'develop') {
+                            sh '''
+                                echo "🧩 Ejecutando build con settings.xml personalizado (Perfil develop)"
+                                mvn -s $MAVEN_SETTINGS clean package install deploy -U -Pdevelop -DskipTests -DretryFailedDeploymentCount=5
+                            '''
+                        } else if (target == 'release') {
+                            sh '''
+                                echo "🧩 Ejecutando build con settings.xml personalizado (Perfil release)"
+                                mvn -s $MAVEN_SETTINGS clean package install deploy -U -Prelease -DskipTests -DretryFailedDeploymentCount=5
+                            '''
+                        } else if (target.startsWith('project_release')) {
+                            sh '''
+                                echo "🧩 Ejecutando build con settings.xml personalizado (Perfil project_release)"
+                                mvn -s $MAVEN_SETTINGS clean package install deploy -U -Pproject_release -DskipTests -DretryFailedDeploymentCount=5
+                            '''
+                        } else {
+                            echo "ℹ️ Rama ${target} no coincide con develop/release/project_release, no se ejecuta build Maven."
+                        }
+                    }
                 }
             }
         }
