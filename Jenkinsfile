@@ -47,7 +47,7 @@ pipeline {
                 script {
                     echo "🏗️ Iniciando construcción Maven en la rama ${env.BRANCH_NAME ?: env.CHANGE_TARGET}..."
 
-                    dir('icbs-interface-core') {
+                    dir('icbs-interface') {
                         def target = env.BRANCH_NAME ?: env.CHANGE_TARGET ?: ''
 
                         if (target == 'develop') {
