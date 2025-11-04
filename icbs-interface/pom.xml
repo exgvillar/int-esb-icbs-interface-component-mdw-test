@@ -51,12 +51,12 @@
 				<repository>
 					<id>central</id>
 					<name>1f48f5d16364-releases</name>
-					<url>http://192.168.1.162:8082/artifactory/develop</url>
+					<url>http://192.168.1.145:8082/artifactory/develop</url>
 				</repository>
 				<snapshotRepository>
 					<id>snapshots</id>
 					<name>1f48f5d16364-snapshots</name>
-					<url>http://192.168.1.162:8082/artifactory/develop</url>
+					<url>http://192.168.1.145:8082/artifactory/develop</url>
 				</snapshotRepository>
 			</distributionManagement>
 		</profile>
@@ -66,12 +66,12 @@
 			    <repository>
 			        <id>central</id>
 			        <name>1f48f5d16364-releases</name>
-			        <url>http://192.168.1.162:8082/artifactory/release</url>
+			        <url>http://192.168.1.145:8082/artifactory/release</url>
 			    </repository>
 			    <snapshotRepository>
 			        <id>snapshots</id>
 			        <name>1f48f5d16364-snapshots</name>
-			        <url>http://192.168.1.162:8082/artifactory/release</url>
+			        <url>http://192.168.1.145:8082/artifactory/release</url>
 			    </snapshotRepository>
 			</distributionManagement>	
 		</profile>
@@ -81,12 +81,12 @@
 			    <repository>
 			        <id>central</id>
 			        <name>1f48f5d16364-releases</name>
-			        <url>http://192.168.1.162:8082/artifactory/project_release</url>
+			        <url>http://192.168.1.145:8082/artifactory/project_release</url>
 			    </repository>
 			    <snapshotRepository>
 			        <id>snapshots</id>
 			        <name>1f48f5d16364-snapshots</name>
-			        <url>http://192.168.1.162:8082/artifactory/project_release</url>
+			        <url>http://192.168.1.145:8082/artifactory/project_release</url>
 			    </snapshotRepository>
 			</distributionManagement>
 		</profile>
